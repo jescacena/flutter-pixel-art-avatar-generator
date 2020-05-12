@@ -1,2 +1,5 @@
-# flutter-pixel-art-avatar-generator
-Flutter pixel art avatar generator
+# Flutter Pixel Art Avatar Generator
+
+Simple Avatar generator
+
+
