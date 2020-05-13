@@ -1,0 +1,4 @@
+#Wed May 13 17:29:05 CEST 2020
+base.0=/Users/fjescacena/Documents/JES/JES_DOCS/POST flutter/flutter-pixel-art-avatar-generator/build/app/intermediates/dex/debug/mergeDexDebug/out/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

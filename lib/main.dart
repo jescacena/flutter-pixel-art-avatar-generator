@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:helloworld/avatar_form.dart';
+import 'package:helloworld/avatar_result.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,12 +15,17 @@ class MyApp extends StatelessWidget {
           title: Text('Pixel Art Avatar Generator'),
         ),
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Text('Select your gender and type your nickname'),
-              AvatarForm()
-            ],
+          child: Container(
+            padding: const EdgeInsets.only(left: 20, right: 20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                SizedBox(height: 40),
+                AvatarForm(),
+                SizedBox(height: 50),
+                AvatarResult()
+              ],
+            ),
           ),
         ),
       ),

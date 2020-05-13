@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 enum Gender { male, female }
 
@@ -27,54 +28,60 @@ class AvatarFormState extends State<AvatarForm> {
     // Build a Form widget using the _formKey created above.
     return Form(
       key: _formKey,
-      child: Column(children: <Widget>[
-        ListTile(
-          title: const Text('Male'),
-          leading: Radio(
-            value: Gender.male,
-            groupValue: _genderSelected,
-            onChanged: (Gender value) {
-              setState(() {
-                _genderSelected = value;
-              });
+      child: Container(
+        color: Colors.lightBlue,
+        padding: const EdgeInsets.all(10.0),
+        child: Column(children: <Widget>[
+          Text('Fill in this form and click to get your avatar',
+              style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
+          ListTile(
+            title: const Text('Male'),
+            leading: Radio(
+              value: Gender.male,
+              groupValue: _genderSelected,
+              onChanged: (Gender value) {
+                setState(() {
+                  _genderSelected = value;
+                });
+              },
+            ),
+          ),
+          ListTile(
+            title: const Text('Female'),
+            leading: Radio(
+              value: Gender.female,
+              groupValue: _genderSelected,
+              onChanged: (Gender value) {
+                setState(() {
+                  _genderSelected = value;
+                });
+              },
+            ),
+          ),
+          TextFormField(
+            // The validator receives the text that the user has entered.
+            validator: (value) {
+              if (value.isEmpty) {
+                return 'Please enter your nickname';
+              }
+              return null;
             },
           ),
-        ),
-        ListTile(
-          title: const Text('Female'),
-          leading: Radio(
-            value: Gender.female,
-            groupValue: _genderSelected,
-            onChanged: (Gender value) {
-              setState(() {
-                _genderSelected = value;
-              });
-            },
-          ),
-        ),
-        TextFormField(
-          // The validator receives the text that the user has entered.
-          validator: (value) {
-            if (value.isEmpty) {
-              return 'Please enter your nickname';
-            }
-            return null;
-          },
-        ),
-        RaisedButton(
-          onPressed: () {
-            // Validate returns true if the form is valid, otherwise false.
-            if (_formKey.currentState.validate()) {
-              // If the form is valid, display a snackbar. In the real world,
-              // you'd often call a server or save the information in a database.
+          RaisedButton(
+            onPressed: () {
+              // Validate returns true if the form is valid, otherwise false.
+              if (_formKey.currentState.validate()) {
+                // If the form is valid, display a snackbar. In the real world,
+                // you'd often call a server or save the information in a database.
 
-              Scaffold.of(context)
-                  .showSnackBar(SnackBar(content: Text('Processing Data')));
-            }
-          },
-          child: Text('Generate'),
-        )
-      ]),
+                Scaffold.of(context)
+                    .showSnackBar(SnackBar(content: Text('Processing Data')));
+              }
+            },
+            child: Text('Generate'),
+          ),
+        ]),
+      ),
     );
   }
 }
