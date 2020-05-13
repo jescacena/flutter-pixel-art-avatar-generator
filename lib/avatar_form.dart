@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
-enum Gender { male, female }
+import './constants.dart' as Constants;
 
 // Define a custom Form widget.
 class AvatarForm extends StatefulWidget {
+  final Function onSubmit;
+
+  AvatarForm(this.onSubmit);
+
   @override
   AvatarFormState createState() {
     return AvatarFormState();
@@ -21,7 +24,8 @@ class AvatarFormState extends State<AvatarForm> {
   // not a GlobalKey<AvatarFormState>.
   final _formKey = GlobalKey<FormState>();
 
-  Gender _genderSelected = Gender.male;
+  Constants.Gender _genderSelected = Constants.Gender.female;
+  String _nickname = 'Paradigma';
 
   @override
   Widget build(BuildContext context) {
@@ -29,17 +33,22 @@ class AvatarFormState extends State<AvatarForm> {
     return Form(
       key: _formKey,
       child: Container(
-        color: Colors.lightBlue,
+        decoration: new BoxDecoration(
+            color: Colors.lightBlue,
+            // backgroundBlendMode: BlendMode.overlay,
+            borderRadius: new BorderRadius.circular(10.0),
+            border: new Border.all(
+                color: Colors.black, width: 1.0, style: BorderStyle.solid)),
         padding: const EdgeInsets.all(10.0),
         child: Column(children: <Widget>[
           Text('Fill in this form and click to get your avatar',
-              style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400)),
           ListTile(
             title: const Text('Male'),
             leading: Radio(
-              value: Gender.male,
+              value: Constants.Gender.male,
               groupValue: _genderSelected,
-              onChanged: (Gender value) {
+              onChanged: (Constants.Gender value) {
                 setState(() {
                   _genderSelected = value;
                 });
@@ -49,9 +58,9 @@ class AvatarFormState extends State<AvatarForm> {
           ListTile(
             title: const Text('Female'),
             leading: Radio(
-              value: Gender.female,
+              value: Constants.Gender.female,
               groupValue: _genderSelected,
-              onChanged: (Gender value) {
+              onChanged: (Constants.Gender value) {
                 setState(() {
                   _genderSelected = value;
                 });
@@ -59,12 +68,18 @@ class AvatarFormState extends State<AvatarForm> {
             ),
           ),
           TextFormField(
+            initialValue: _nickname,
+            decoration: InputDecoration(labelText: 'Enter your nickname'),
             // The validator receives the text that the user has entered.
             validator: (value) {
               if (value.isEmpty) {
                 return 'Please enter your nickname';
               }
               return null;
+            },
+            onChanged: (text) {
+              print("First text field: $text");
+              _nickname = text;
             },
           ),
           RaisedButton(
@@ -76,6 +91,9 @@ class AvatarFormState extends State<AvatarForm> {
 
                 Scaffold.of(context)
                     .showSnackBar(SnackBar(content: Text('Processing Data')));
+
+                FocusScope.of(context).requestFocus(FocusNode());
+                widget.onSubmit(_nickname, _genderSelected);
               }
             },
             child: Text('Generate'),
