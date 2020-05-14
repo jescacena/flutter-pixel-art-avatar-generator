@@ -37,7 +37,6 @@ class MyAppState extends State<MyApp> {
                     setState(() {
                       _nickname = nickname;
                       _gender = gender;
-                      print('janderrrr ---->' + nickname);
                     });
                   }),
                   SizedBox(height: 10),
