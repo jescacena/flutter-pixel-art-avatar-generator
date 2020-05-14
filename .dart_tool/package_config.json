@@ -122,6 +122,12 @@
       "languageVersion": "2.0"
     },
     {
+      "name": "share",
+      "rootUri": "file:///Users/fjescacena/.pub-cache/hosted/pub.dartlang.org/share-0.6.4+2",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
       "name": "sky_engine",
       "rootUri": "file:///Users/fjescacena/development/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
@@ -188,7 +194,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2020-05-13T17:14:36.340422Z",
+  "generated": "2020-05-14T16:17:36.019226Z",
   "generator": "pub",
   "generatorVersion": "2.8.1"
 }
